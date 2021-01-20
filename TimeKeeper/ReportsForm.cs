@@ -40,9 +40,6 @@ namespace TimeKeeper {
 			CultureInfo myCI = new CultureInfo("en-US");
 			Calendar myCal = myCI.Calendar;
 
-			int weekNumber = myCal.GetWeekOfYear(dateTimePicker1.Value, CalendarWeekRule.FirstDay, DayOfWeek.Monday);
-			int monthNumber = dateTimePicker1.Value.Month;
-
 			string[] historyEntries = File.ReadAllLines(Directory.GetCurrentDirectory() + "/history.txt");
 
 			DateTime clockInDateTime = DateTime.MinValue;
@@ -60,7 +57,7 @@ namespace TimeKeeper {
 						radioButton1.Checked
 						&& (
 							date.Year != dateTimePicker1.Value.Year
-							|| myCal.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Monday) != weekNumber
+							|| myCal.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Monday) != myCal.GetWeekOfYear(dateTimePicker1.Value, CalendarWeekRule.FirstDay, DayOfWeek.Monday)
 						)
 					) || (
 						radioButton2.Checked

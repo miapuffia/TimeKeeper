@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,12 +29,39 @@ namespace TimeKeeper {
 				return;
 			}
 
+			CultureInfo myCI = new CultureInfo("en-US");
+			Calendar myCal = myCI.Calendar;
+
 			string[] historyEntries = File.ReadAllLines(Directory.GetCurrentDirectory() + "/history.txt");
 
 			string visibleDate = "";
 
 			foreach(string entry in historyEntries) {
 				DateTime date = new DateTime(Int64.Parse(entry.Substring(0, entry.IndexOf('|'))));
+
+				if(
+					(
+						radioButton4.Checked
+						&& date.Date != dateTimePicker1.Value.Date
+					) || (
+						radioButton1.Checked
+						&& (
+							date.Year != dateTimePicker1.Value.Year
+							|| myCal.GetWeekOfYear(date, CalendarWeekRule.FirstDay, DayOfWeek.Monday) != myCal.GetWeekOfYear(dateTimePicker1.Value, CalendarWeekRule.FirstDay, DayOfWeek.Monday)
+						)
+					) || (
+						radioButton2.Checked
+						&& (
+							date.Year != dateTimePicker1.Value.Year
+							|| date.Month != dateTimePicker1.Value.Month
+						)
+					) || (
+						radioButton3.Checked
+						&& date.Year != dateTimePicker1.Value.Year
+					)
+				) {
+					continue;
+				}
 
 				string dateDate = date.ToString("yyyy-MM-dd");
 				string dateTime = date.ToString("hh:mm:ss");
@@ -65,6 +93,10 @@ namespace TimeKeeper {
 
 		private void reportsToolStripMenuItem_Click(object sender, EventArgs e) {
 			FormNavigationManager.NavigateToForm<ReportsForm>(this);
+		}
+
+		private void button1_Click(object sender, EventArgs e) {
+			PopulateHistory();
 		}
 	}
 }
