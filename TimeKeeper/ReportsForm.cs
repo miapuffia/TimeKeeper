@@ -83,17 +83,51 @@ namespace TimeKeeper {
 
 				string message = entry.Substring(entry.LastIndexOf('|') + 1);
 
-				int existingRow = rowsToAdd.FindIndex(item => item[0] == message);
+				if(radioButton5.Checked) {
+					int existingRow = rowsToAdd.FindIndex(item => item[0] == message);
 
-				if(existingRow == -1) {
-					rowsToAdd.Add(new string[] { message, ((date - clockInDateTime).TotalSeconds / 60 / 60) + "" });
-				} else {
-					rowsToAdd[existingRow][1] = (double.Parse(rowsToAdd[existingRow][1]) + ((date - clockInDateTime).TotalSeconds) / 60 / 60) + "";
+					if(existingRow == -1) {
+						rowsToAdd.Add(new string[] { message, ((date - clockInDateTime).TotalSeconds / 60 / 60) + "" });
+					} else {
+						rowsToAdd[existingRow][1] = (double.Parse(rowsToAdd[existingRow][1]) + ((date - clockInDateTime).TotalSeconds) / 60 / 60) + "";
+					}
+				} else if(radioButton6.Checked) {
+					int existingRow = rowsToAdd.FindIndex(item => item[0] == date.ToString("M/d/yyyy"));
+
+					if(existingRow == -1) {
+						rowsToAdd.Add(new string[] { date.ToString("M/d/yyyy"), ((date - clockInDateTime).TotalSeconds / 60 / 60) + "" });
+					} else {
+						rowsToAdd[existingRow][1] = (double.Parse(rowsToAdd[existingRow][1]) + ((date - clockInDateTime).TotalSeconds) / 60 / 60) + "";
+					}
 				}
 			}
 
 			foreach(String[] row in rowsToAdd) {
 				dataGridView1.Rows.Add(new string[] { row[0], double.Parse(row[1]).ToString("0.##") });
+			}
+
+			if(rowsToAdd.Count > 0) {
+				dataGridView1.Rows.Add(new string[] { "Total", rowsToAdd.Select(r => double.Parse(r[1])).Sum().ToString("0.##") });
+
+				int lastRowIndex = dataGridView1.Rows.GetLastRow(DataGridViewElementStates.None);
+				Font defaultFont = dataGridView1.DefaultCellStyle.Font;
+
+				for(int i = 0; i < dataGridView1.Rows[lastRowIndex].Cells.Count; i++) {
+					dataGridView1.Rows[lastRowIndex].Cells[i].Style = new DataGridViewCellStyle();
+					dataGridView1.Rows[lastRowIndex].Cells[i].Style.Font = new Font(defaultFont, FontStyle.Bold);
+				}
+			}
+		}
+
+		private void radioButton5_CheckedChanged(object sender, EventArgs e) {
+			if((sender as RadioButton).Checked) {
+				dataGridView1.Columns[0].HeaderText = "Subject";
+			}
+		}
+
+		private void radioButton6_CheckedChanged(object sender, EventArgs e) {
+			if((sender as RadioButton).Checked) {
+				dataGridView1.Columns[0].HeaderText = "Day";
 			}
 		}
 	}

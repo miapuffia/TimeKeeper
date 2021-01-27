@@ -24,7 +24,7 @@ namespace TimeKeeper {
 
 		private void PopulateHistory() {
 			listView1.Items.Clear();
-
+			
 			if(!File.Exists(Directory.GetCurrentDirectory() + "/history.txt")) {
 				return;
 			}
@@ -63,9 +63,9 @@ namespace TimeKeeper {
 					continue;
 				}
 
-				string dateDate = date.ToString("yyyy-MM-dd");
-				string dateTime = date.ToString("hh:mm:ss");
-				string clockInOrOut = entry.Substring(entry.IndexOf('|') + 1, entry.LastIndexOf('|') - entry.IndexOf('|') - 1);
+				string dateDate = date.ToString("M/d/yyyy,").PadRight(12) + date.ToString("dddd");
+				string dateTime = date.ToString("%h:").PadLeft(3) + date.ToString("mm:ss tt");
+				string clockInOrOut = entry.Substring(entry.IndexOf('|') + 1, entry.LastIndexOf('|') - entry.IndexOf('|') - 1).PadRight(3);
 				string message = entry.Substring(entry.LastIndexOf('|') + 1);
 
 				if(dateDate != visibleDate) {

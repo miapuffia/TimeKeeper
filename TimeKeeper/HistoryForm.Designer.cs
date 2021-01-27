@@ -25,12 +25,6 @@ namespace TimeKeeper {
 		/// </summary>
 		private void InitializeComponent() {
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.clockInoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.alarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.listView1 = new System.Windows.Forms.ListView();
 			this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -39,10 +33,16 @@ namespace TimeKeeper {
 			this.radioButton4 = new System.Windows.Forms.RadioButton();
 			this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
 			this.button1 = new System.Windows.Forms.Button();
+			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.clockInoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.alarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.listView1 = new System.Windows.Forms.ListView();
 			this.tableLayoutPanel1.SuspendLayout();
-			this.menuStrip1.SuspendLayout();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
+			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// tableLayoutPanel1
@@ -53,72 +53,18 @@ namespace TimeKeeper {
 			this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
 			this.tableLayoutPanel1.Controls.Add(this.menuStrip1, 0, 0);
-			this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.button1, 0, 2);
+			this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 3);
 			this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
 			this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-			this.tableLayoutPanel1.RowCount = 3;
+			this.tableLayoutPanel1.RowCount = 4;
+			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
 			this.tableLayoutPanel1.Size = new System.Drawing.Size(784, 761);
 			this.tableLayoutPanel1.TabIndex = 1;
-			// 
-			// menuStrip1
-			// 
-			this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clockInoutToolStripMenuItem,
-            this.historyToolStripMenuItem,
-            this.alarmsToolStripMenuItem,
-            this.reportsToolStripMenuItem});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(784, 29);
-			this.menuStrip1.TabIndex = 0;
-			this.menuStrip1.Text = "menuStrip1";
-			// 
-			// clockInoutToolStripMenuItem
-			// 
-			this.clockInoutToolStripMenuItem.Name = "clockInoutToolStripMenuItem";
-			this.clockInoutToolStripMenuItem.Size = new System.Drawing.Size(106, 25);
-			this.clockInoutToolStripMenuItem.Text = "Clock in/out";
-			this.clockInoutToolStripMenuItem.Click += new System.EventHandler(this.clockInoutToolStripMenuItem_Click);
-			// 
-			// historyToolStripMenuItem
-			// 
-			this.historyToolStripMenuItem.Enabled = false;
-			this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-			this.historyToolStripMenuItem.Size = new System.Drawing.Size(72, 25);
-			this.historyToolStripMenuItem.Text = "History";
-			// 
-			// alarmsToolStripMenuItem
-			// 
-			this.alarmsToolStripMenuItem.Name = "alarmsToolStripMenuItem";
-			this.alarmsToolStripMenuItem.Size = new System.Drawing.Size(71, 25);
-			this.alarmsToolStripMenuItem.Text = "Alarms";
-			this.alarmsToolStripMenuItem.Click += new System.EventHandler(this.alarmsToolStripMenuItem_Click);
-			// 
-			// reportsToolStripMenuItem
-			// 
-			this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-			this.reportsToolStripMenuItem.Size = new System.Drawing.Size(76, 25);
-			this.reportsToolStripMenuItem.Text = "Reports";
-			this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
-			// 
-			// listView1
-			// 
-			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-			this.listView1.HideSelection = false;
-			this.listView1.Location = new System.Drawing.Point(20, 276);
-			this.listView1.Margin = new System.Windows.Forms.Padding(20);
-			this.listView1.Name = "listView1";
-			this.listView1.Size = new System.Drawing.Size(744, 465);
-			this.listView1.TabIndex = 1;
-			this.listView1.UseCompatibleStateImageBehavior = false;
-			this.listView1.View = System.Windows.Forms.View.Details;
 			// 
 			// tableLayoutPanel2
 			// 
@@ -129,14 +75,13 @@ namespace TimeKeeper {
 			this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
 			this.tableLayoutPanel2.Controls.Add(this.dateTimePicker1, 1, 0);
-			this.tableLayoutPanel2.Controls.Add(this.button1, 0, 1);
 			this.tableLayoutPanel2.Location = new System.Drawing.Point(194, 49);
-			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(20, 20, 20, 0);
+			this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(20);
 			this.tableLayoutPanel2.Name = "tableLayoutPanel2";
 			this.tableLayoutPanel2.RowCount = 2;
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
 			this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-			this.tableLayoutPanel2.Size = new System.Drawing.Size(396, 207);
+			this.tableLayoutPanel2.Size = new System.Drawing.Size(396, 126);
 			this.tableLayoutPanel2.TabIndex = 5;
 			// 
 			// tableLayoutPanel3
@@ -223,16 +168,71 @@ namespace TimeKeeper {
 			this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.button1.AutoSize = true;
 			this.button1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.tableLayoutPanel2.SetColumnSpan(this.button1, 2);
 			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-			this.button1.Location = new System.Drawing.Point(120, 146);
-			this.button1.Margin = new System.Windows.Forms.Padding(20);
+			this.button1.Location = new System.Drawing.Point(314, 195);
+			this.button1.Margin = new System.Windows.Forms.Padding(0);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(156, 41);
 			this.button1.TabIndex = 2;
 			this.button1.Text = "Get history";
 			this.button1.UseVisualStyleBackColor = true;
 			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
+			// menuStrip1
+			// 
+			this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 12F);
+			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clockInoutToolStripMenuItem,
+            this.historyToolStripMenuItem,
+            this.alarmsToolStripMenuItem,
+            this.reportsToolStripMenuItem});
+			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+			this.menuStrip1.Name = "menuStrip1";
+			this.menuStrip1.Size = new System.Drawing.Size(784, 29);
+			this.menuStrip1.TabIndex = 0;
+			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// clockInoutToolStripMenuItem
+			// 
+			this.clockInoutToolStripMenuItem.Name = "clockInoutToolStripMenuItem";
+			this.clockInoutToolStripMenuItem.Size = new System.Drawing.Size(106, 25);
+			this.clockInoutToolStripMenuItem.Text = "Clock in/out";
+			this.clockInoutToolStripMenuItem.Click += new System.EventHandler(this.clockInoutToolStripMenuItem_Click);
+			// 
+			// historyToolStripMenuItem
+			// 
+			this.historyToolStripMenuItem.Enabled = false;
+			this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
+			this.historyToolStripMenuItem.Size = new System.Drawing.Size(72, 25);
+			this.historyToolStripMenuItem.Text = "History";
+			// 
+			// alarmsToolStripMenuItem
+			// 
+			this.alarmsToolStripMenuItem.Name = "alarmsToolStripMenuItem";
+			this.alarmsToolStripMenuItem.Size = new System.Drawing.Size(71, 25);
+			this.alarmsToolStripMenuItem.Text = "Alarms";
+			this.alarmsToolStripMenuItem.Click += new System.EventHandler(this.alarmsToolStripMenuItem_Click);
+			// 
+			// reportsToolStripMenuItem
+			// 
+			this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+			this.reportsToolStripMenuItem.Size = new System.Drawing.Size(76, 25);
+			this.reportsToolStripMenuItem.Text = "Reports";
+			this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
+			// 
+			// listView1
+			// 
+			this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.listView1.Font = new System.Drawing.Font("Consolas", 14F);
+			this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+			this.listView1.HideSelection = false;
+			this.listView1.Location = new System.Drawing.Point(20, 256);
+			this.listView1.Margin = new System.Windows.Forms.Padding(20);
+			this.listView1.Name = "listView1";
+			this.listView1.Size = new System.Drawing.Size(744, 485);
+			this.listView1.TabIndex = 1;
+			this.listView1.UseCompatibleStateImageBehavior = false;
+			this.listView1.View = System.Windows.Forms.View.Details;
 			// 
 			// HistoryForm
 			// 
@@ -245,12 +245,12 @@ namespace TimeKeeper {
 			this.Text = "HistoryForm";
 			this.tableLayoutPanel1.ResumeLayout(false);
 			this.tableLayoutPanel1.PerformLayout();
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
 			this.tableLayoutPanel2.ResumeLayout(false);
 			this.tableLayoutPanel2.PerformLayout();
 			this.tableLayoutPanel3.ResumeLayout(false);
 			this.tableLayoutPanel3.PerformLayout();
+			this.menuStrip1.ResumeLayout(false);
+			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
