@@ -66,7 +66,19 @@ namespace TimeKeeper {
 				Value = dateTime ?? DateTime.MinValue.AddYears(2000),
 			};
 
+			Button deleteButton = new Button {
+				Text = "❌",
+				AutoSize = true,
+				AutoSizeMode = AutoSizeMode.GrowAndShrink,
+				FlatStyle = FlatStyle.Flat,
+			};
+
+			deleteButton.Click += (object sender, EventArgs e) => {
+				tableLayoutPanel1.Controls.Remove(alarmTable);
+			};
+
 			alarmTable.Controls.Add(alarmTime, 0, 0);
+			alarmTable.Controls.Add(deleteButton, 1, 0);
 
 			alarmTable.ResumeLayout();
 

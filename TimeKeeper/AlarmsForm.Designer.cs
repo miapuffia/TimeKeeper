@@ -29,11 +29,11 @@ namespace TimeKeeper {
 			this.clockInoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.alarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
 			this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tableLayoutPanel2.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			this.tableLayoutPanel3.SuspendLayout();
@@ -91,6 +91,13 @@ namespace TimeKeeper {
 			this.alarmsToolStripMenuItem.Size = new System.Drawing.Size(71, 25);
 			this.alarmsToolStripMenuItem.Text = "Alarms";
 			// 
+			// reportsToolStripMenuItem
+			// 
+			this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+			this.reportsToolStripMenuItem.Size = new System.Drawing.Size(76, 25);
+			this.reportsToolStripMenuItem.Text = "Reports";
+			this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
+			// 
 			// tableLayoutPanel1
 			// 
 			this.tableLayoutPanel1.ColumnCount = 1;
@@ -102,7 +109,7 @@ namespace TimeKeeper {
 			this.tableLayoutPanel1.RowCount = 1;
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
 			this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 605);
+			this.tableLayoutPanel1.Size = new System.Drawing.Size(744, 603);
 			this.tableLayoutPanel1.TabIndex = 3;
 			// 
 			// tableLayoutPanel3
@@ -114,11 +121,11 @@ namespace TimeKeeper {
 			this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
 			this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
 			this.tableLayoutPanel3.Controls.Add(this.button2, 1, 0);
-			this.tableLayoutPanel3.Location = new System.Drawing.Point(236, 677);
+			this.tableLayoutPanel3.Location = new System.Drawing.Point(234, 675);
 			this.tableLayoutPanel3.Name = "tableLayoutPanel3";
 			this.tableLayoutPanel3.RowCount = 1;
 			this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-			this.tableLayoutPanel3.Size = new System.Drawing.Size(312, 81);
+			this.tableLayoutPanel3.Size = new System.Drawing.Size(316, 83);
 			this.tableLayoutPanel3.TabIndex = 0;
 			// 
 			// button1
@@ -126,7 +133,7 @@ namespace TimeKeeper {
 			this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
 			this.button1.AutoSize = true;
 			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-			this.button1.Location = new System.Drawing.Point(20, 20);
+			this.button1.Location = new System.Drawing.Point(20, 21);
 			this.button1.Margin = new System.Windows.Forms.Padding(20);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(146, 41);
@@ -143,18 +150,11 @@ namespace TimeKeeper {
 			this.button2.Location = new System.Drawing.Point(206, 20);
 			this.button2.Margin = new System.Windows.Forms.Padding(20);
 			this.button2.Name = "button2";
-			this.button2.Size = new System.Drawing.Size(86, 41);
+			this.button2.Size = new System.Drawing.Size(90, 43);
 			this.button2.TabIndex = 3;
 			this.button2.Text = "Save";
 			this.button2.UseVisualStyleBackColor = true;
 			this.button2.Click += new System.EventHandler(this.button2_Click);
-			// 
-			// reportsToolStripMenuItem
-			// 
-			this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-			this.reportsToolStripMenuItem.Size = new System.Drawing.Size(76, 25);
-			this.reportsToolStripMenuItem.Text = "Reports";
-			this.reportsToolStripMenuItem.Click += new System.EventHandler(this.reportsToolStripMenuItem_Click);
 			// 
 			// AlarmsForm
 			// 
