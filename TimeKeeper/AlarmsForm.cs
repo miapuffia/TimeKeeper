@@ -33,56 +33,26 @@ namespace TimeKeeper {
 			string[] alarmEntries = File.ReadAllLines(Directory.GetCurrentDirectory() + "/alarms.txt");
 
 			foreach(string entry in alarmEntries) {
-				AddAlarm(new DateTime(long.Parse(entry)));
+				int part1Index = entry.IndexOf('|');
+				string timePart = part1Index == -1 ? entry : entry.Substring(0, part1Index);
+				string daysPart = part1Index == -1 ? null : entry.Substring(part1Index + 1);
+
+				AddAlarm(new DateTime(long.Parse(timePart)), daysPart == null ? null : daysPart.Select(chr => chr == '1').ToArray());
 			}
 		}
 
-		private void AddAlarm(DateTime? dateTime = null) {
-			tableLayoutPanel1.SuspendLayout();
-
-			TableLayoutPanel alarmTable = new TableLayoutPanel {
-				ColumnCount = 2,
-				RowCount = 1,
-				BackColor = Color.White,
-				AutoSize = true,
-				Padding = new Padding(20),
+		private void AddAlarm(DateTime? dateTime = null, bool[] days = null) {
+			AlarmControl alarmControl = new AlarmControl {
+				TimeValue = dateTime,
 				Anchor = AnchorStyles.None,
+				SelectedDays = days,
 			};
 
-			alarmTable.SuspendLayout();
-
-			alarmTable.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-			alarmTable.ColumnStyles.Add(new ColumnStyle(SizeType.AutoSize));
-
-			alarmTable.RowStyles.Add(new RowStyle(SizeType.AutoSize));
-
-			alarmTable.ColumnCount = alarmTable.ColumnStyles.Count;
-			alarmTable.RowCount = alarmTable.RowStyles.Count;
-
-			DateTimePicker alarmTime = new DateTimePicker {
-				Format = DateTimePickerFormat.Time,
-				ShowUpDown = true,
-				Font = new Font(button1.Font.FontFamily, 12),
-				Value = dateTime ?? DateTime.MinValue.AddYears(2000),
+			alarmControl.DeleteButtonClickDelegate = (object sender, EventArgs e) => {
+				tableLayoutPanel1.Controls.Remove(alarmControl);
 			};
 
-			Button deleteButton = new Button {
-				Text = "❌",
-				AutoSize = true,
-				AutoSizeMode = AutoSizeMode.GrowAndShrink,
-				FlatStyle = FlatStyle.Flat,
-			};
-
-			deleteButton.Click += (object sender, EventArgs e) => {
-				tableLayoutPanel1.Controls.Remove(alarmTable);
-			};
-
-			alarmTable.Controls.Add(alarmTime, 0, 0);
-			alarmTable.Controls.Add(deleteButton, 1, 0);
-
-			alarmTable.ResumeLayout();
-
-			tableLayoutPanel1.Controls.Add(alarmTable, 0, tableLayoutPanel1.RowCount - 1);
+			tableLayoutPanel1.Controls.Add(alarmControl, 0, tableLayoutPanel1.RowCount - 1);
 
 			tableLayoutPanel1.RowStyles[tableLayoutPanel1.RowCount - 1].SizeType = SizeType.AutoSize;
 			tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
@@ -107,8 +77,10 @@ namespace TimeKeeper {
 			File.Delete(Directory.GetCurrentDirectory() + "/alarms.txt");
 
 			using(StreamWriter sw = File.AppendText(Directory.GetCurrentDirectory() + "/alarms.txt")) {
-				foreach(DateTimePicker dateTimePicker in GetAllControls<DateTimePicker>(tableLayoutPanel1)) {
-					sw.WriteLine(dateTimePicker.Value.Ticks);
+				foreach(Control control in tableLayoutPanel1.Controls) {
+					AlarmControl alarmControl = (AlarmControl) control;
+
+					sw.WriteLine(alarmControl.TimeValue.Value.Ticks + "|" + string.Join("", alarmControl.SelectedDays.Select(b => b ? '1' : '0')));
 				}
 			}
 		}

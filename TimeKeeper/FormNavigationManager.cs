@@ -47,7 +47,7 @@ namespace TimeKeeper {
 
 		private static void CallOnNavigatedTo(Form fromForm, Form toForm) {
 			Type T = toForm.GetType();
-			
+
 			foreach(MethodInfo m in T.GetMethods()) {
 				if(m.Name == "OnNavigatedTo") {
 					m.Invoke(toForm, new Object[] { fromForm });

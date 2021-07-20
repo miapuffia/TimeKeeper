@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlarmControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AlarmControl.Designer.cs">
+      <DependentUpon>AlarmControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="AlarmsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <Compile Include="ReportsForm.Designer.cs">
       <DependentUpon>ReportsForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AlarmControl.resx">
+      <DependentUpon>AlarmControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AlarmsForm.resx">
       <DependentUpon>AlarmsForm.cs</DependentUpon>
     </EmbeddedResource>

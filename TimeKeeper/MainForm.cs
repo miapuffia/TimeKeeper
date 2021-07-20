@@ -16,7 +16,7 @@ using System.Windows.Forms;
 namespace TimeKeeper {
 	public partial class MainForm : Form {
 		private bool clockedIn = false;
-		private readonly List<DateTime> alarmDateTimes = new List<DateTime>();
+		private readonly List<AlarmControl> alarmControls = new List<AlarmControl>();
 
 		public MainForm() {
 			InitializeComponent();
@@ -75,20 +75,17 @@ namespace TimeKeeper {
 		private void timer1_Tick(object sender, EventArgs e) {
 			DateTime now = DateTime.Now;
 
-			foreach(DateTime alarmDateTime in alarmDateTimes) {
+			foreach(AlarmControl alarmControl in alarmControls) {
 				if(
-					alarmDateTime.Hour == now.Hour
-					&& alarmDateTime.Minute == now.Minute
-					&& alarmDateTime.Second == now.Second
+					alarmControl.TimeValue.Value.Hour == now.Hour
+					&& alarmControl.TimeValue.Value.Minute == now.Minute
+					&& alarmControl.TimeValue.Value.Second == now.Second
+					&& alarmControl.SelectedDays[((int) now.DayOfWeek)]
 				) {
 					SoundPlayer player = new SoundPlayer("ping.wav");
 					player.Play();
 
 					Task.Run(() => {
-						ChangeTaskbarRed();
-						Thread.Sleep(1000);
-						ChangeTaskbarDefault();
-						Thread.Sleep(1000);
 						ChangeTaskbarRed();
 						Thread.Sleep(1000);
 						ChangeTaskbarDefault();
@@ -150,12 +147,21 @@ namespace TimeKeeper {
 				return;
 			}
 
-			alarmDateTimes.Clear();
+			alarmControls.Clear();
 
 			string[] alarmEntries = File.ReadAllLines(Directory.GetCurrentDirectory() + "/alarms.txt");
 
 			foreach(string entry in alarmEntries) {
-				alarmDateTimes.Add(new DateTime(long.Parse(entry)));
+				int part1Index = entry.IndexOf('|');
+				string timePart = part1Index == -1 ? entry : entry.Substring(0, part1Index);
+				string daysPart = part1Index == -1 ? null : entry.Substring(part1Index + 1);
+
+				AlarmControl alarmControl = new AlarmControl {
+					TimeValue = new DateTime(long.Parse(timePart)),
+					SelectedDays = daysPart == null ? null : daysPart.Select(chr => chr == '1').ToArray(),
+				};
+
+				alarmControls.Add(alarmControl);
 			}
 		}
 
